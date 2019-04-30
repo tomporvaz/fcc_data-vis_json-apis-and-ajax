@@ -7,20 +7,20 @@
     <title>Document</title>
 </head>
 <script>
+    //this code won't work because /json/cats.json does not exist on this domain
     document.addEventListener('DOMContentLoaded',function(){
         document.getElementById('getMessage').onclick=function(){
-            // Add your code below this line
-            //this code doesn't run localy because it does not use CORS
             req=new XMLHttpRequest();
-            const url = 'https://learn.freecodecamp.org/json/cats.json';
-            req.open("GET", url, true);
+            req.open("GET",'/json/cats.json',true);
             req.send();
             req.onload=function(){
                 json=JSON.parse(req.responseText);
                 document.getElementsByClassName('message')[0].innerHTML=JSON.stringify(json);
+                // Add your code below this line
+                console.log(json[2].codeNames[1]); 
+                
+                // Add your code above this line
             };
-            console.log("Button was clicked!")
-            // Add your code above this line
         };
     });
 </script>
